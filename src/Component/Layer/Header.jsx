@@ -6,12 +6,16 @@ import Li from './Li'
 import { AiOutlineAlignRight } from 'react-icons/ai'
 import { FaCaretDown, FaShoppingCart, FaUser } from 'react-icons/fa'
 import { Link } from 'react-router-dom'
+import { useSelector } from 'react-redux'
 
 const Header = () => {
 
     let [show, setShow] = useState(false)
     let [show1, setShow1] = useState(false)
     let [cart, setCart] = useState(false)
+
+    let a = useSelector((item)=>item.allCart.addCart)
+    
 
     useEffect(() => {
         function resize() {
@@ -60,13 +64,12 @@ const Header = () => {
                                 </div>
 
                             </div>
-                            {/* <FaUser />
-                            <FaCaretDown /> */}
                         </div>
                         <div className="one">
                             <div className='relative'>
-                                <div onClick={() => setCart(!cart)} className="one">
+                                <div onClick={() => setCart(!cart)} className="relative one">
                                     <FaShoppingCart />
+                                    <p className='absolute mb-5 text-base text-white -top-4 -right-2'>{a.length}</p>
                                 </div>
                                 <div className={`${cart ? "opacity-100 visible" : "opacity-0 invisible"} maincart md:w-[360px] bg-[#4a8885] absolute top-full p-4 right-0 mt-5 z-10 `}>
                                     <div className="flex items-center md:justify-between top gap-x-3">
